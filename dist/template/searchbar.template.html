@@ -1,0 +1,26 @@
+<div class="searchbar-container">
+	<div class="searchbar-body">
+		<div class="searchbar-body-input">
+			<input ng-model="query" type="text" ng-model-options="{debounce: 250}" placeholder="Zoek op plaatsnaam of adres">
+		</div>
+		<div class="searchbar-body-button" id="search-button" ng-click="getResults(query)"></div>
+		<div class="searchbar-body-button" id="clear-button" ng-click="clearResults()"></div>
+	</div>
+
+	<div class="searchbar-resultlist">
+		<!-- Results -->
+		<div class="searchbar-resultlist-results" ng-repeat="result in results | limitTo:resultLimit" ng-click="lookupResult(result.id)">
+	    <p ng-bind-html=getHTML(result.id)></p>
+	  </div>
+		<div class="searchbar-resultlist-results show-more" ng-show="results.length > resultLimit" ng-click="incrementLimit()">
+      ...
+    </div>
+		<div class="searchbar-resultlist-results show-more" ng-show="results.length == 0 && showSuggestions">
+				U zocht op  <b> {{suggestions[0]}} </b> Bedoelde u misschien?:
+		</div>
+		<div class="searchbar-resultlist-results" ng-show="results.length == 0 && showSuggestions" ng-repeat="suggestion in suggestions[1].suggestion | limitTo:5" ng-click="getSuggestion(suggestion)">
+			<p>{{ suggestion }}</p>
+		</div>
+	</div>
+
+</div>

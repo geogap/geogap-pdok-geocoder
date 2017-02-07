@@ -2,13 +2,13 @@ var scripts = document.getElementsByTagName("script");
 var currentScriptPath = scripts[scripts.length-1].src;
 var baseUrl = currentScriptPath.substring(0, currentScriptPath.lastIndexOf('/') + 1);
 
-angular.module('searchbar', [])
+angular.module('geogap.pdokgeocoder', [])
 
 .component('searchbar', {
 	bindings: {
 		resultLimit: '<'
 	},
-	templateUrl: baseUrl + 'searchbar.view.html',
+	templateUrl: baseUrl + 'template/searchbar.template.html',
 	controller: function ($state, $scope, $element, $sce, GeolocateService) {
 		$scope.query = '';
 
