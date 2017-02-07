@@ -9,7 +9,7 @@
     ],
     "ignore": [
       ".*",
-      "src"
+      "src",
       "build"
     ],
     "dependencies": {
