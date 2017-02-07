@@ -2,7 +2,7 @@ var scripts = document.getElementsByTagName("script");
 var currentScriptPath = scripts[scripts.length-1].src;
 var baseUrl = currentScriptPath.substring(0, currentScriptPath.lastIndexOf('/') + 1);
 
-angular.module('geogap.pdokgeocoder', [])
+angular.module('geogap.pdokgeocoder', ['terraformer', 'terraformer-wkt-parser'])
 
 .component('searchbar', {
 	bindings: {
