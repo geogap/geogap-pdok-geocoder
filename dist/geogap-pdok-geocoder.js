@@ -1,8 +1,16 @@
 var scripts = document.getElementsByTagName("script");
 var currentScriptPath = scripts[scripts.length-1].src;
-var baseUrl = currentScriptPath.substring(0, currentScriptPath.lastIndexOf('/') + 1);
+var baseUrl, componentUrl;
 
-angular.module('geogap.pdokgeocoder', ['terraformer', 'terraformer-wkt-parser'])
+for (var i = 0; i < scripts.length; i++) {
+	var charIndex = scripts[i].src.indexOf('geogap-pdok-geocoder')
+	if (charIndex > 0) {
+		baseUrl = currentScriptPath.substring(0, currentScriptPath.lastIndexOf('/') + 1);
+		componentUrl = currentScriptPath.substring(0, charIndex);
+	}
+}
+
+angular.module('geogap.pdokgeocoder', [])
 
 .component('searchbar', {
 	bindings: {
@@ -55,14 +63,15 @@ angular.module('geogap.pdokgeocoder', ['terraformer', 'terraformer-wkt-parser'])
 			$scope.query = suggestion
 		};
 
-		$scope.lookupResult = function(id) {
+		$scope.lookupResult = function(data) {
+			$scope.query = data.weergavenaam;
+			$scope.selectedLocation = true;
+			$scope.results = [];
+
 			GeolocateService.lookup({
-				id: id
-			}).then(function(result){
-				$scope.query = result.weergavenaam;
-				$scope.selectedLocation = true;
-				$scope.results = [];
-				$scope.$emit('newLocation', result);
+				id: data.id
+			}).then(function(result) {
+				$scope.$emit('newLocation', result, data.type);
 			});
 		};
 
@@ -106,47 +115,32 @@ angular.module('geogap.pdokgeocoder', ['terraformer', 'terraformer-wkt-parser'])
 
 
   this.suggest = function (params) {
-       return $http
-      .get(suggestUrl, {params:params})
-      .then(function(response) {
-        return response.data;
-      })
+     return $http
+    .get(suggestUrl, {params:params})
+    .then(function(response) {
+      return response.data;
+    })
   }
 
   this.lookup = function (params) {
-       return $http
-      .get(lookupUrl, {params:params})
-      .then(function(result) {
-      	var responseGeomFields = [
-      		// 'centroide_ll', //This one is currently 'bugged, is returned in an array'
-      		'centroide_rd',
-      		'geometrie_ll',
-      		'geometrie_rd'
-      	]
+     return $http
+    .get(lookupUrl, {params:params})
+    .then(function(result) {
+    	var result = result.data.response.docs[0];
 
-      	var result = result.data
-
-      	//Replace all WKT geom with geojson geom
-      	for (r in result.response.docs) {
-      		for (responseGeom in responseGeomFields) {
-      			result.response.docs[r][responseGeomFields[responseGeom]] = Terraformer.WKT.parse(result.response.docs[r][responseGeomFields[responseGeom]])
-      		}
-      	}
-
-      	//Only ever get the first result found, as search is done based on ID
-      	feature = result.response.docs[0]
-      	feature.type = 'Feature'
-      	feature.geometry = feature.geometrie_ll
-        return feature;
-      })
+    	feature = result
+    	feature.type = 'Feature'
+    	feature.geometry = Terraformer.WKT.parse(result.centroide_ll)
+      return feature;
+    })
   }
 
   this.free = function (params) {
-  	   return $http
-      .get(freeUrl, {params:params})
-      .then(function(response) {
-        return response.data;
-      })
+	   return $http
+    .get(freeUrl, {params:params})
+    .then(function(response) {
+      return response.data;
+    })
   }
 
   return this

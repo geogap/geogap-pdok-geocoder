@@ -9,7 +9,7 @@
 
 	<div class="searchbar-resultlist">
 		<!-- Results -->
-		<div class="searchbar-resultlist-results" ng-repeat="result in results | limitTo:resultLimit" ng-click="lookupResult(result.id)">
+		<div class="searchbar-resultlist-results" ng-repeat="result in results | limitTo:resultLimit" ng-click="lookupResult(result)">
 	    <p ng-bind-html=getHTML(result.id)></p>
 	  </div>
 		<div class="searchbar-resultlist-results show-more" ng-show="results.length > resultLimit" ng-click="incrementLimit()">
