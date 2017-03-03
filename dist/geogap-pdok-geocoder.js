@@ -14,7 +14,8 @@ angular.module('geogap.pdokgeocoder', [])
 
 .component('searchbar', {
 	bindings: {
-		resultLimit: '<'
+		resultLimit: '<',
+		crs: '<'
 	},
 	templateUrl: baseUrl + 'template/searchbar.template.html',
 	controller: function ($state, $scope, $element, $sce, GeolocateService) {
@@ -27,6 +28,14 @@ angular.module('geogap.pdokgeocoder', [])
 				$scope.resultLimit = 10;
 			} else {
 				$scope.resultLimit = this.resultLimit;
+			}
+
+			if (this.crs ==  'll') {
+				$scope.crs = 'll';
+			} else if (this.crs == 'rd') {
+				$scope.crs = 'rd';
+			} else if (!this.crs || (this.crs != 'll' && this.crs != 'rd ')) {
+				$scope.crs = 'll';
 			}
 		};
 
@@ -69,8 +78,9 @@ angular.module('geogap.pdokgeocoder', [])
 			$scope.results = [];
 
 			GeolocateService.lookup({
-				id: data.id
-			}).then(function(result) {
+				id: data.id,
+				fl: '*'
+			}, $scope.crs).then(function(result) {
 				$scope.$emit('newLocation', result, data.type);
 			});
 		};
@@ -78,6 +88,7 @@ angular.module('geogap.pdokgeocoder', [])
 		$scope.clearResults = function() {
 			$scope.query = '';
 			$scope.results = [];
+			$scope.$emit('clearResults');
 		};
 
 		$scope.getHTML = function(id) {
@@ -113,7 +124,6 @@ angular.module('geogap.pdokgeocoder', [])
   var lookupUrl  = 'http://geodata.nationaalgeoregister.nl/locatieserver/lookup?'
   var freeUrl  	 = 'http://geodata.nationaalgeoregister.nl/locatieserver/free?'
 
-
   this.suggest = function (params) {
      return $http
     .get(suggestUrl, {params:params})
@@ -122,15 +132,22 @@ angular.module('geogap.pdokgeocoder', [])
     })
   }
 
-  this.lookup = function (params) {
+  this.lookup = function (params, crs) {
      return $http
     .get(lookupUrl, {params:params})
     .then(function(result) {
     	var result = result.data.response.docs[0];
-
     	feature = result
-    	feature.type = 'Feature'
-    	feature.geometry = Terraformer.WKT.parse(result.centroide_ll)
+    	feature.type = 'Feature';
+
+			if (crs == 'll') {
+				feature.geometry = Terraformer.WKT.parse(result.geometrie_ll);
+			}
+
+			if (crs == 'rd') {
+				feature.geometry = Terraformer.WKT.parse(result.geometrie_rd);
+			}
+
       return feature;
     })
   }
