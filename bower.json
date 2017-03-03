@@ -1,7 +1,7 @@
 {
     "name": "geogap-pdok-geocoder",
     "description": "Angular component based on the PDOK geocoder",
-    "version": "0.2.3",
+    "version": "0.3.0",
     "license": "MIT",
     "main": [
       "dist/geogap-pdok-geocoder.js",

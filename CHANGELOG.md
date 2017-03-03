@@ -1,5 +1,16 @@
+<a name="0.3.0"></a>
+### 0.3.0 (2017-03-03)
+
+Het is vanaf nu mogelijk om in het searchbar element aan te geven welk coordinaat systeem gebruik moet worden. Door toevoeging van **crs='..'** kan de keuze gemaakt worden voor output in wgs84 (ll) of wel rijksdriehoeksstelsel (rd). Standaard wordt gebruik gemaakt van het wgs84 coordinaatsysteem.
+
+#### Features
+
+* Implementatie van crs specificatie
+* Event emit op de clear button
+
+
 <a name="0.2.2"></a>
-### 0.2.1 (2017-02-24)
+### 0.2.2 (2017-02-24)
 
 Een aantal kleine bugfixes doorgevoerd voor het selecteren van de base URL
 
@@ -7,6 +18,7 @@ Een aantal kleine bugfixes doorgevoerd voor het selecteren van de base URL
 
 * Dynamische Base url
 * Type wordt meegestuurd voorbepaling zoomniveau
+
 
 <a name="0.2.1"></a>
 ### 0.2.1 (2017-02-06)
