@@ -6,7 +6,7 @@ De Geogap PDOK Geocoder is een AngularJS component die bruikbaar is in elk Angul
 De Geogap PDOK Geocoder is een work in progress en bevind zich nog in het ontwikkelingsstadium. 
 
 ## Installatie
-Installatie kan via de [Bower Package Manager](https://bower.io/): bower install geogap-pdok-geocoder
+Installatie kan via de [Bower Package Manager](https://bower.io/): bower install geogap-pdok-geocoder.
 Voeg daarna het bijbehorende script en css toe aan de index.html.
 
 ```html
