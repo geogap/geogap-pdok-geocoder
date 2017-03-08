@@ -1,3 +1,12 @@
+<a name="0.3.1"></a>
+### 0.3.1 (2017-03-08)
+
+Kleine stijlwijzigingen in de fault css
+
+#### Fixes
+
+* Kleine stijlwijzigingen
+
 <a name="0.3.0"></a>
 ### 0.3.0 (2017-03-03)
 
@@ -23,7 +32,7 @@ Een aantal kleine bugfixes doorgevoerd voor het selecteren van de base URL
 <a name="0.2.1"></a>
 ### 0.2.1 (2017-02-06)
 
-Aankondiging vna de eerste release van de Geogap PDOK geocoder. Dit Angular (^1.5.0) component is te integreren in Angular projecten, waarbij gebruik wordt gemaakt van de geocoder die wordt aangeboden via het [PDOK](https://github.com/PDOK/locatieserver/wiki/API-Locatieserver).
+Aankondiging van de eerste release van de Geogap PDOK geocoder. Dit Angular (^1.5.0) component is te integreren in Angular projecten, waarbij gebruik wordt gemaakt van de geocoder die wordt aangeboden via het [PDOK](https://github.com/PDOK/locatieserver/wiki/API-Locatieserver).
 
 #### Features
 
