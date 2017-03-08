@@ -1,4 +1,4 @@
-# Geogap PDOK geocoder
+# Geogap PDOK Geocoder
 
 De Geogap PDOK Geocoder is een AngularJS component die bruikbaar is in elk Angular 1.5+ project. Het component werkt op basis van de nieuwe [PDOK Locatieserver API](https://www.google.com). 
 
@@ -13,7 +13,7 @@ Voeg daarna het bijbehorende script en css toe aan de index.html.
 <script src="bower_components/geogap-pdok-geocoder/dist/geogap-pdok-geocoder.js></script>
 ```
 
-De Geogap PDOK Geocoder maakt gebruik van {Terraformer](http://terraformer.io/) om de resultaten van de Locatieserver om te zetten van WKT naar GeoJSON. Indien deze niet al in het project aanwezig zijn moeten deze tevens aan de index.html toegevoegd worden.
+De Geogap PDOK Geocoder maakt gebruik van [Terraformer](http://terraformer.io/) om de resultaten van de Locatieserver om te zetten van WKT naar GeoJSON. Indien deze niet al in het project aanwezig zijn moeten deze tevens aan de index.html toegevoegd worden.
 
 ```html
 <script src="bower_components/terraformer/terraformer.js"></script>
@@ -21,7 +21,7 @@ De Geogap PDOK Geocoder maakt gebruik van {Terraformer](http://terraformer.io/) 
 ```
 
 ## Gebruik
-Voeg de Geogap PDOK geocoder toe als dependcy aan de app: 
+Voeg de Geogap PDOK Geocoder toe als dependcy aan de app: 
 
 ```javascript
 var app = angular.module('demoapp', ['geogap.pdokgeocoder']);
