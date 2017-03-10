@@ -1,6 +1,6 @@
 # Geogap PDOK Geocoder
 
-De Geogap PDOK Geocoder is een AngularJS component die bruikbaar is in elk Angular 1.5+ project. Het component werkt op basis van de nieuwe [PDOK Locatieserver API](https://www.google.com). 
+De Geogap PDOK Geocoder is een AngularJS component dat bruikbaar is in elk Angular 1.5+ project. Het component werkt op basis van de nieuwe [PDOK Locatieserver API](https://www.google.com). 
 
 ## In Developement
 De Geogap PDOK Geocoder is een work in progress en bevindt zich nog in het ontwikkelingsstadium. 
